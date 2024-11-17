@@ -3,7 +3,7 @@ import api from "@actual-app/api";
 (async () => {
   await api.init({
     // Budget data will be cached locally here, in subdirectories for each file.
-    dataDir: "./actual-backup",
+    dataDir: "./actual-cache",
     // This is the URL of your running server
     serverURL: "http://localhost:5006",
     // This is the password you use to log into the server

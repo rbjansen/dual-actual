@@ -1,3 +1,2 @@
 FROM docker.io/actualbudget/actual-server:latest
-COPY ./sync.js /app/sync.js
 RUN npm install --save @actual-app/api
