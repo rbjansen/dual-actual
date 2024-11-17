@@ -1,3 +1,5 @@
 actual-data
+actual-backup
 node_modules
 .env
+.DS_Store
