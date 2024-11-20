@@ -1,2 +1,4 @@
 FROM docker.io/actualbudget/actual-server:latest
-RUN npm install --save @actual-app/api
+RUN npm install --save \
+    @actual-app/api \
+    ecb-euro-exchange-rates

@@ -1,4 +1,5 @@
 import api from "@actual-app/api";
+import * as exchangeRates from "ecb-euro-exchange-rates";
 
 (async () => {
   await api.init({
@@ -10,14 +11,28 @@ import api from "@actual-app/api";
     password: process.env.ACTUAL_PASSWORD,
   });
 
+  // First, open a budget file
   // This is the ID from Settings → Show advanced settings → Sync ID
   await api.downloadBudget("160f19e6-efef-4be1-9ae8-8f6f418448b9");
-  // or, if you have end-to-end encryption enabled:
-  // await api.downloadBudget("1cfdbb80-6274-49bf-b0c2-737235a4c81f", {
-  //   password: "password1",
-  // });
 
-  let budget = await api.getBudgetMonth("2024-10");
-  console.log(budget);
+  // Example methods...
+
+  // let budget = await api.getBudgetMonth("2024-10");
+  // console.log(budget);
+
+  try {
+    let accounts = await api.getAccounts();
+    console.log(accounts);
+  } catch (e) {
+    console.error(e);
+  }
+
+  const rates = await exchangeRates.fetchHistoric();
+  let timeToRate = {};
+  for (let rate of rates) {
+    timeToRate[rate.time] = rate.rates.SEK;
+  }
+  console.log(timeToRate["2024-10-01"]);
+
   await api.shutdown();
 })();
