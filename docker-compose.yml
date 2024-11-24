@@ -1,6 +1,6 @@
 services:
   actual_server:
-    container_name: dual_actual
+    container_name: dual-actual
     build:
       context: .
       dockerfile: Dockerfile.dual-actual
@@ -17,5 +17,5 @@ services:
       - ./actual-cache:/app/actual-cache
       - ./lib:/app/lib
       - ./entry.js:/app/entry.js  # External synchronization script
-      - ./example.js:/app/example.js  # External example script
     restart: unless-stopped
+    # command: node entry.js
