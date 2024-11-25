@@ -16,6 +16,6 @@ services:
       - ./actual-data:/data
       - ./actual-cache:/app/actual-cache
       - ./lib:/app/lib
-      - ./entry.js:/app/entry.js  # External synchronization script
+      - ./convert.js:/app/convert.js  # External conversion script
     restart: unless-stopped
-    # command: node entry.js
+    # command: node convert.js
