@@ -18,17 +18,17 @@ docker exec -it dual-actual node lib/listAccounts
 
 > **Recommended**: connect your bank accounts to Actual to be able to import your latest transactions with the click of a button. See Actual's instructions [here](https://actualbudget.org/docs/advanced/bank-sync/).
 
-Add a `.env` file to the root of the project with the following keys, replacing the values with your own:
+Set the values in `config.js` and add a `.env` file to the root of the project with the following keys, replacing the values with your own:
 
 ```bash
-ACTUAL_BUDGET_ID="<your-budget-id>"  # See Settings > Show advanced settings > Sync ID
-ACTUAL_CURRENCY="<your-currency>"  # e.g. "SEK"
-ACTUAL_CONVERT_ACCOUNT_ID="<your-account-id>"
+SYNTH_API_KEY="<your-synth-api-key>"
 ACTUAL_PASSWORD="<your-password>"
 # ACTUAL_SERVER_URL="<your-url>"  # Optional, defaults to "http://localhost:5006"
 ```
 
-Restart the Actual container with the new environment variables:
+For the exchange rates, this example uses [Synth](https://synthfinance.com/), which provides a free plan of 1000 API calls per month. Should be more than enough.
+
+Restart the Actual container with the new environment variables and config:
 
 ```bash
 docker compose up -d --force-recreate
@@ -38,9 +38,7 @@ Note that any subsequent startups of the docker compose will automatically take 
 
 ## Usage
 
-The script `convert.js` updates all transaction amounts in the specified account `ACTUAL_CONVERT_ACCOUNT_ID` that have not previously been converted, to the currency specified by `ACTUAL_CURRENCY`. Converted transactions are prefixed in their notes with your selected currency code.
-
-The example in this repository uses exchange rates provided by the European Central Bank (ECB) via [ecb-euro-exchange-rates](https://www.npmjs.com/package/ecb-euro-exchange-rates).
+The script `convert.js` updates all transaction amounts in the specified accounts that have not previously been converted, to the currency specified by `toCurrency`. Converted transactions are prefixed in their notes with your selected currency code.
 
 Manually run the script with:
 

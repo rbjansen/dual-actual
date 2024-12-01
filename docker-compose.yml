@@ -17,5 +17,6 @@ services:
       - ./actual-cache:/app/actual-cache
       - ./lib:/app/lib
       - ./convert.js:/app/convert.js  # External conversion script
+      - ./config.js:/app/config.js  # Config file
     restart: unless-stopped
     # command: node convert.js
