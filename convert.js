@@ -27,9 +27,18 @@ import Config from "./config.js";
           continue;
         }
         // NOTE: values are in cents; rounded after conversion.
+        const amount = exchange.applyRate(transaction.amount, transaction.date);
+        if (!amount) {
+          console.warn(
+            `Skipping transaction ${JSON.stringify(
+              transaction
+            )} as no conversion rate was found.`
+          );
+          continue;
+        }
         await api.updateTransaction(transaction.id, {
           notes: `${Config.toCurrency}: ` + transaction.notes,
-          amount: exchange.applyRate(transaction.amount, transaction.date),
+          amount: amount,
         });
         count++;
       }
