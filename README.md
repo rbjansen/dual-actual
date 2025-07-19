@@ -10,13 +10,11 @@ Add an empty `.env` file to the root of the project and start Actual with:
 docker compose up -d --build
 ```
 
-Log in, set up your accounts, and find the ID of the account you want to apply the conversions to under Advanced Settings.
+Log in, set up your accounts, and find the sync ID of your budget under Advanced Settings. This example repository uses [Synth](https://synthfinance.com/) for exchange rates, which provides a free plan of 1000 API calls per month. Should be more than enough.
 
 > **Recommended**: connect your bank accounts to Actual to be able to import your latest transactions with the click of a button. See Actual's instructions [here](https://actualbudget.org/docs/advanced/bank-sync/).
 
-This example repository uses [Synth](https://synthfinance.com/) for exchange rates, which provides a free plan of 1000 API calls per month. Should be more than enough.
-
-Update `config.js` with your values and update the `.env` file with the following keys, replacing the values with your own:
+Replace the values in the `.env` with your own:
 
 ```bash
 SYNTH_API_KEY="<your-synth-api-key>"
@@ -24,7 +22,15 @@ ACTUAL_PASSWORD="<your-password>"
 # ACTUAL_SERVER_URL="<your-url>"  # Optional, defaults to "http://localhost:5006"
 ```
 
-Restart the Actual container with the new environment variables and config:
+Next, update `config.js` with your values. First add your `syncId`. Then to find the individual account IDs of the accounts you wish to convert, execute:
+
+```bash
+docker exec -it dual-actual node lib/listAccounts
+```
+
+Add the relevant ids to the `convertAccounts` array in `config.js`.
+
+Finally restart the Actual container with the new environment variables and config:
 
 ```bash
 docker compose up -d --force-recreate
