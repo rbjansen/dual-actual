@@ -9,7 +9,7 @@ import Config from "./config.js";
     password: process.env.ACTUAL_PASSWORD,
   });
 
-  await api.downloadBudget(Config.budgetId);
+  await api.downloadBudget(Config.syncId);
 
   for (let account of Config.convertAccounts) {
     try {

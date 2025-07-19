@@ -1,5 +1,5 @@
 const Config = {
-  budgetId: "<your-budget-id>", // Assuming one
+  syncId: "<your-sync-id>", // Replace with your sync ID
   history: 90, // Days of historical exchange rate data to fetch
   convertAccounts: [
     {
