@@ -4,7 +4,7 @@ An example docker-based solution for single-currency budgeting with multi-curren
 
 ## Installation
 
-Start Actual with:
+Add an empty `.env` file to the root of the project and start Actual with:
 
 ```bash
 docker compose up -d --build
@@ -18,7 +18,7 @@ docker exec -it dual-actual node lib/listAccounts
 
 > **Recommended**: connect your bank accounts to Actual to be able to import your latest transactions with the click of a button. See Actual's instructions [here](https://actualbudget.org/docs/advanced/bank-sync/).
 
-Set the values in `config.js` and add a `.env` file to the root of the project with the following keys, replacing the values with your own:
+Set the values in `config.js` and update the `.env` with the following keys, replacing the values with your own:
 
 ```bash
 SYNTH_API_KEY="<your-synth-api-key>"
