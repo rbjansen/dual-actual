@@ -18,9 +18,20 @@ import Config from "./config.js";
         toCurrency: Config.toCurrency,
         history: Config.history,
       });
-      await exchange.getRates();
       let transactions = await api.getTransactions(account.id);
       let count = 0;
+      // Check if all transactions have been converted.
+      transactions = transactions.filter(
+        (transaction) =>
+          !transaction.notes?.startsWith(`${Config.toCurrency}: `)
+      );
+      if (transactions.length === 0) {
+        console.log(
+          `No transactions to convert for account ${account.id} (${account.fromCurrency} to ${Config.toCurrency}).`
+        );
+        continue;
+      }
+      await exchange.getRates();
       for (let transaction of transactions) {
         // Skip transactions that have already been converted.
         if (transaction.notes?.startsWith(`${Config.toCurrency}: `)) {

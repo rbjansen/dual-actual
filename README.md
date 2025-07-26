@@ -10,14 +10,14 @@ Add an empty `.env` file to the root of the project and start Actual with:
 docker compose up -d --build
 ```
 
-Log in, set up your accounts, and find the sync ID of your budget under Advanced Settings. This example repository uses [Synth](https://synthfinance.com/) for exchange rates, which provides a free plan of 1000 API calls per month. Should be more than enough.
+Log in, set up your accounts, and find the sync ID of your budget under Advanced Settings. This example repository uses [Twelve Data](https://twelvedata.com/docs) for exchange rates, which provides a free plan of 800 API calls per month. Should be more than enough as we're fetching (long) time series with a single call.
 
 > **Recommended**: connect your bank accounts to Actual to be able to import your latest transactions with the click of a button. See Actual's instructions [here](https://actualbudget.org/docs/advanced/bank-sync/).
 
 Replace the values in the `.env` with your own:
 
 ```bash
-SYNTH_API_KEY="<your-synth-api-key>"
+TWELVE_DATA_API_KEY="<your-twelve-data-api-key>"
 ACTUAL_PASSWORD="<your-password>"
 # ACTUAL_SERVER_URL="<your-url>"  # Optional, defaults to "http://localhost:5006"
 ```
